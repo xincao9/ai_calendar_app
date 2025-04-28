@@ -75,6 +75,8 @@ class LoginPage extends StatelessWidget {
                       elevation: 0, // 去除默认高度
                     ),
                     child: Container(
+                      width: double.infinity, // 确保 Container 宽度填充整个按钮
+                      height: 56, // 明确设置高度，确保图片有足够空间
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(
@@ -95,23 +97,17 @@ class LoginPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 16),
-                // 其他方式登录按钮
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // TODO: 实现其他登录方式
-                    },
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      side: const BorderSide(color: Colors.blue),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Text(
-                      '其他方式登录',
-                      style: TextStyle(fontSize: 16, color: Colors.blue),
+                // 其他方式登录（改为可点击文本）
+                GestureDetector(
+                  onTap: () {
+                    // TODO: 实现其他登录方式
+                  },
+                  child: const Text(
+                    '其他方式登录',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline, // 添加下划线以提示可点击
                     ),
                   ),
                 ),
