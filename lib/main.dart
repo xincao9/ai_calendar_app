@@ -26,13 +26,11 @@ class LoginPage extends StatelessWidget {
       body: Container(
         // 设置渐变背景
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFE6F0FA), // 浅蓝色
-              Color(0xFFFFFFFF), // 白色
-            ],
+          image: DecorationImage(
+            image: AssetImage(
+              'assets/images/default/login/background.png',
+            ), // 背景图片路径
+            fit: BoxFit.cover, // 图片填充方式（覆盖整个容器）
           ),
         ),
         child: Center(
@@ -42,14 +40,13 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo 占位符
-                Container(
+                Image.asset(
+                  'assets/images/default/login/logo.png', // Logo 图片路径
                   width: 80,
                   height: 80,
-                  color: Colors.grey[300], // 占位符颜色
-                  child: const Center(child: Text('Logo')),
                 ),
                 const SizedBox(height: 16),
-                // 用户数量
+                // 手机号
                 const Text(
                   '177****5412',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -57,7 +54,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 // 描述文本
                 const Text(
-                  '全球用户使用数量',
+                  '中国电信提供认证服务',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
                 const SizedBox(height: 40),
@@ -70,17 +67,33 @@ class LoginPage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: Colors.blue[300], // 按钮颜色
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      backgroundColor: Colors.transparent, // 背景透明
+                      shadowColor: Colors.transparent, // 去除阴影
+                      elevation: 0, // 去除默认高度
                     ),
-                    child: const Text(
-                      '手机一键登录',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/default/login/button_background.png',
+                          ), // 按钮背景图片
+                          fit: BoxFit.cover, // 图片填充方式
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '手机一键登录',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 16),
                 // 其他方式登录按钮
                 SizedBox(
