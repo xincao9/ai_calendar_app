@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // TODO: 实现登录逻辑
+                            debugPrint('用户点击手机一键登录');
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -108,7 +108,7 @@ class LoginPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       GestureDetector(
                         onTap: () {
-                          // TODO: 实现其他登录方式
+                          debugPrint('用户点击其他登录方式');
                         },
                         child: const Text(
                           '其他方式登录',
@@ -133,10 +133,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // TODO: 打开用户协议
+                      debugPrint('用户点击打开用户协议');
                     },
                     child: const Text(
-                      '我已阅读并同意《用户协议》和 《隐私政策》',
+                      '我已阅读并同意《用户协议》和《隐私政策》',
                       style: TextStyle(fontSize: 12, color: Colors.black),
                     ),
                   ),
