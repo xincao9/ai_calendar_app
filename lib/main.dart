@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show debugPrint;
+import 'package:http/http.dart' as http; // 导入 http 包
+import 'dart:convert'; // 用于 JSON 编码和解码
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('MyApp: Building MaterialApp');
     return MaterialApp(
       title: '登录页面',
       theme: ThemeData(primarySwatch: Colors.blue),
@@ -17,11 +21,56 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool isLoading = false; // 控制加载状态
+
+  // 定义调用 HTTP 接口的方法
+  Future<void> loginWithPhone() async {
+    setState(() {
+      isLoading = true; // 显示加载状态
+    });
+
+    try {
+      // 假设接口是 https://api.example.com/login
+      final url = Uri.parse('https://api.example.com/login');
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json', // 设置请求头
+        },
+        body: jsonEncode({
+          'phone': '177****5412', // 示例参数：手机号
+        }),
+      );
+
+      // 检查响应状态
+      if (response.statusCode == 200) {
+        // 成功响应
+        final data = jsonDecode(response.body);
+        debugPrint('登录成功: $data');
+      } else {
+        debugPrint('登录失败: ${response.statusCode}, ${response.body}');
+      }
+    } catch (e) {
+      // 捕获异常
+      debugPrint('请求出错: $e');
+    } finally {
+      setState(() {
+        isLoading = false; // 隐藏加载状态
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    debugPrint('LoginPage: Building Scaffold');
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -32,7 +81,6 @@ class LoginPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // 居中内容部分
             Expanded(
               child: Center(
                 child: Padding(
@@ -55,21 +103,21 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      // 描述文本
                       const Text(
                         '中国电信提供认证服务',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey, // 灰白色
-                        ),
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
                       ),
                       const SizedBox(height: 40),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                            debugPrint('用户点击手机一键登录');
-                          },
+                          onPressed:
+                              isLoading
+                                  ? null // 禁用按钮当正在加载时
+                                  : () async {
+                                    debugPrint('LoginPage: 手机一键登录按钮 clicked');
+                                    await loginWithPhone(); // 调用 HTTP 接口
+                                  },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             shape: RoundedRectangleBorder(
@@ -93,14 +141,19 @@ class LoginPage extends StatelessWidget {
                                 Radius.circular(24),
                               ),
                             ),
-                            child: const Center(
-                              child: Text(
-                                '手机一键登录',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
+                            child: Center(
+                              child:
+                                  isLoading
+                                      ? const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ) // 显示加载指示器
+                                      : const Text(
+                                        '手机一键登录',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                             ),
                           ),
                         ),
@@ -108,7 +161,7 @@ class LoginPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       GestureDetector(
                         onTap: () {
-                          debugPrint('用户点击其他登录方式');
+                          debugPrint('LoginPage: 其他方式登录 clicked');
                         },
                         child: const Text(
                           '其他方式登录',
@@ -133,7 +186,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      debugPrint('用户点击打开用户协议');
+                      debugPrint('LoginPage: 用户协议或隐私政策 clicked');
                     },
                     child: const Text(
                       '我已阅读并同意《用户协议》和《隐私政策》',
