@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // 设置渐变背景
+        // 设置背景图片
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
@@ -39,26 +39,33 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Logo 占位符
+                // Logo 图片
                 Image.asset(
                   'assets/images/default/login/logo.png', // Logo 图片路径
                   width: 80,
                   height: 80,
                 ),
                 const SizedBox(height: 16),
-                // 手机号
+                // 用户数量
                 const Text(
                   '177****5412',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black, // 文本颜色调整为白色以适应背景
+                  ),
                 ),
                 const SizedBox(height: 8),
                 // 描述文本
                 const Text(
                   '中国电信提供认证服务',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey, // 灰白色
+                  ),
                 ),
                 const SizedBox(height: 40),
-                // 手机一键登录按钮
+                // 手机一键登录按钮（设置背景图片）
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -68,7 +75,7 @@ class LoginPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(24), // 更圆润的边角
                       ),
                       backgroundColor: Colors.transparent, // 背景透明
                       shadowColor: Colors.transparent, // 去除阴影
@@ -76,7 +83,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     child: Container(
                       width: double.infinity, // 确保 Container 宽度填充整个按钮
-                      height: 56, // 明确设置高度，确保图片有足够空间
+                      height: 48, // 调整高度以匹配截图
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(
@@ -84,7 +91,7 @@ class LoginPage extends StatelessWidget {
                           ), // 按钮背景图片
                           fit: BoxFit.cover, // 图片填充方式
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
                       ),
                       child: const Center(
                         child: Text(
@@ -95,20 +102,15 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 16),
-                // 其他方式登录（改为可点击文本）
+                // 其他方式登录（可点击文本）
                 GestureDetector(
                   onTap: () {
                     // TODO: 实现其他登录方式
                   },
                   child: const Text(
                     '其他方式登录',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline, // 添加下划线以提示可点击
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.blue),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -116,11 +118,21 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Checkbox(value: true, onChanged: (value) {}),
-                    const Text('我已阅读并同意《用户协议》'),
-                    const SizedBox(width: 16),
-                    Checkbox(value: true, onChanged: (value) {}),
-                    const Text('《隐私政策》'),
+                    Checkbox(
+                      value: true,
+                      onChanged: (value) {},
+                      activeColor: Colors.white,
+                      checkColor: Colors.blue,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // TODO: 打开用户协议
+                      },
+                      child: const Text(
+                        '我已阅读并同意《用户协议》和 《隐私政策》',
+                        style: TextStyle(fontSize: 12, color: Colors.black),
+                      ),
+                    ),
                   ],
                 ),
               ],
