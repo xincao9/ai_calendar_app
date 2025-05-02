@@ -79,7 +79,7 @@ class LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 25),
               _buildLoginButton(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 4),
               _buildOtherLoginOption(),
             ],
           ),
@@ -116,8 +116,8 @@ class LoginPageState extends State<LoginPage> {
           elevation: 0,
         ),
         child: Container(
-          width: double.infinity,
-          height: 48,
+          width: 350,
+          height: 52,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
@@ -133,7 +133,7 @@ class LoginPageState extends State<LoginPage> {
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const Text(
                       '手机一键登录',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
           ),
         ),
@@ -147,7 +147,7 @@ class LoginPageState extends State<LoginPage> {
       onTap: () => debugPrint('LoginPage: 其他方式登录 clicked'),
       child: const Text(
         '其他方式登录',
-        style: TextStyle(fontSize: 14, color: Colors.blue),
+        style: TextStyle(fontSize: 17, color: Colors.green),
       ),
     );
   }
