@@ -89,5 +89,6 @@ flutter:
   # see https://flutter.dev/to/font-from-package
   assets:
     - assets/images/default/login/logo.png
+    - assets/images/default/login/app_name.png
     - assets/images/default/login/background.png
     - assets/images/default/login/button_background.png

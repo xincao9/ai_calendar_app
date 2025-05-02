@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'app_name.dart';
+import 'logo.dart';
 import 'login_page.dart';
 import 'dart:convert'; // 用于 JSON 编码和解码
 import 'package:http/http.dart' as http; // 导入 http 包
@@ -46,10 +48,7 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     debugPrint('LoginPage: Building Scaffold');
-    return Scaffold(
-      body: _buildBody(),
-      bottomNavigationBar: _buildBottomBar(),
-    );
+    return Scaffold(body: _buildBody(), bottomNavigationBar: _buildBottomBar());
   }
 
   // 主体内容区域
@@ -57,39 +56,32 @@ class LoginPageState extends State<LoginPage> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
+          alignment: Alignment.topLeft,
           image: AssetImage('assets/images/default/login/background.png'),
-          fit: BoxFit.cover,
+          fit: BoxFit.fitWidth,
         ),
       ),
       child: Column(
         children: [
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/default/login/logo.png',
-                      width: 80,
-                      height: 80,
-                    ),
-                    const SizedBox(height: 16),
-                    _buildPhoneText(),
-                    const SizedBox(height: 8),
-                    const Text(
-                      '中国电信提供认证服务',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
-                    const SizedBox(height: 40),
-                    _buildLoginButton(),
-                    const SizedBox(height: 16),
-                    _buildOtherLoginOption(),
-                  ],
-                ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 145),
+              const Logo(width: 70),
+              const SizedBox(height: 5),
+              const AppName(width: 45),
+              const SizedBox(height: 90),
+              _buildPhoneText(),
+              const SizedBox(height: 8),
+              const Text(
+                '中国电信提供认证服务',
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
-            ),
+              const SizedBox(height: 25),
+              _buildLoginButton(),
+              const SizedBox(height: 8),
+              _buildOtherLoginOption(),
+            ],
           ),
         ],
       ),
@@ -101,7 +93,7 @@ class LoginPageState extends State<LoginPage> {
     return const Text(
       '177****5412',
       style: TextStyle(
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
