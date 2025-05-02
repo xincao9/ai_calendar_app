@@ -77,9 +77,9 @@ class LoginPageState extends State<LoginPage> {
                 '中国电信提供认证服务',
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 30),
               _buildLoginButton(),
-              const SizedBox(height: 4),
+              const SizedBox(height: 20),
               _buildOtherLoginOption(),
             ],
           ),
@@ -107,17 +107,12 @@ class LoginPageState extends State<LoginPage> {
       child: ElevatedButton(
         onPressed: isLoading ? null : () async => await loginWithPhone(),
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           elevation: 0,
         ),
-        child: Container(
-          width: 350,
-          height: 52,
+        child: Ink(
+          height: 50,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
@@ -125,7 +120,6 @@ class LoginPageState extends State<LoginPage> {
               ),
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(24)),
           ),
           child: Center(
             child:
