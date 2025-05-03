@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'login/default/login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AiCalendar());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AiCalendar extends StatelessWidget {
+  const AiCalendar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('MyApp: Building MaterialApp');
+    debugPrint('AiCalendar: Building MaterialApp');
     return MaterialApp(
-      title: '登录页面',
+      title: '天心',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const LoginPage(),
     );
