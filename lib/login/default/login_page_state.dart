@@ -103,16 +103,15 @@ class LoginPageState extends State<LoginPage> {
   // 登录按钮
   Widget _buildLoginButton() {
     return SizedBox(
-      width: double.infinity,
       child: ElevatedButton(
         onPressed: isLoading ? null : () async => await loginWithPhone(),
         style: ElevatedButton.styleFrom(
+          fixedSize: const Size(double.infinity, 50),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           elevation: 0,
         ),
-        child: Ink(
-          height: 50,
+        child: DecoratedBox(
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
