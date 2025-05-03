@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'app_name.dart';
-import 'logo.dart';
-import 'login_page.dart';
 import 'dart:convert'; // 用于 JSON 编码和解码
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; // 导入 http 包
+
+import '../../common/app_name.dart';
+import '../../common/logo.dart';
+import 'login_page.dart';
 
 class LoginPageState extends State<LoginPage> {
   bool isLoading = false; // 控制加载状态
