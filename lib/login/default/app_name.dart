@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppName extends StatelessWidget {
   final double width;
 
-  const AppName({super.key, this.width = 60});
+  const AppName({super.key, this.width = 45});
 
   @override
   Widget build(BuildContext context) {
